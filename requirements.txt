@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+cryptography
+python-dotenv
+
+#uvicorn main:app --reload

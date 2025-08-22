@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Encryption & Decryption</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Text Encryption & Decryption</h1>
+
+    <form id="encrypt-form">
+        <textarea id="text-input" placeholder="Enter text to encrypt..." rows="4"></textarea><br>
+        <button type="submit">Encrypt</button>
+    </form>
+
+    <h2>Encrypted Text:</h2>
+    <textarea id="encrypted-text" readonly rows="4"></textarea>
+    <button onclick="copyText('encrypted-text')">Copy Encrypted</button>
+
+    <form id="decrypt-form">
+        <textarea id="text-input-decrypt" placeholder="Enter text to decrypt..." rows="4"></textarea><br>
+        <button type="submit">Decrypt</button>
+    </form>
+
+    <h2>Decrypted Text:</h2>
+    <textarea id="decrypted-text" readonly rows="4"></textarea>
+    <button onclick="copyText('decrypted-text')">Copy Decrypted</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+    // Copy to clipboard
+    function copyText(id) {
+        const textarea = document.getElementById(id);
+        textarea.select();
+        document.execCommand("copy");
+        alert("Copied to clipboard!");
+    }
+
+    // Encrypt
+    document.getElementById("encrypt-form").onsubmit = async function (e) {
+        e.preventDefault();
+        const text = document.getElementById("text-input").value;
+
+        const response = await fetch("/encrypt", {
+            method: "POST",
+            body: new URLSearchParams({ text })
+        });
+
+        const result = await response.json();
+        document.getElementById("encrypted-text").value = result.encrypted_text;
+        document.getElementById("text-input-decrypt").value = result.encrypted_text;
+        document.getElementById("status").textContent = "";
+    };
+
+    // Decrypt
+    document.getElementById("decrypt-form").onsubmit = async function (e) {
+        e.preventDefault();
+        const text = document.getElementById("text-input-decrypt").value;
+
+        const response = await fetch("/decrypt", {
+            method: "POST",
+            body: new URLSearchParams({ text })
+        });
+
+        const result = await response.json();
+        const outputBox = document.getElementById("decrypted-text");
+        const status = document.getElementById("status");
+
+        if (result.decrypted_text === "[DECRYPT_ERROR]") {
+            outputBox.value = "";
+            status.textContent = "⚠️ The encrypted input seems corrupted or tampered with.";
+        } else if (result.decrypted_text === "[BASE64_ERROR]") {
+            outputBox.value = "";
+            status.textContent = "⚠️ Invalid base64 input.";
+        } else {
+            outputBox.value = result.decrypted_text;
+            status.textContent = "";
+        }
+    };
+</script>
+
+</body>
+</html>
