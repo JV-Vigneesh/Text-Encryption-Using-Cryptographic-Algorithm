@@ -24,7 +24,7 @@ Follow these steps to run the project locally:
 
 ```bash
 git clone https://github.com/JV-Vigneesh/Text-Encryption-Using-Cryptographic-Algorithms.git
-cd your-repository-name
+cd Text-Encryption-Using-Cryptographic-Algorithms
 ```
 
 ### 2. Create a Virtual Environment
