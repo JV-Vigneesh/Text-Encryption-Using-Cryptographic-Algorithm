@@ -1,4 +1,4 @@
-# Text Encryption & Decryption Using Cryptographic Algorithms (AES)
+# Text Encryption & Decryption Using Cryptographic Algorithm (AES)
 
 This project provides a web-based application for **text encryption** and **decryption** using **AES (Advanced Encryption Standard)** with **CBC (Cipher Block Chaining)** mode. The application allows users to securely encrypt and decrypt text via a simple user interface.
 
@@ -23,8 +23,8 @@ Follow these steps to run the project locally:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/JV-Vigneesh/Text-Encryption-Using-Cryptographic-Algorithms.git
-cd Text-Encryption-Using-Cryptographic-Algorithms
+git clone https://github.com/JV-Vigneesh/Text-Encryption-Using-Cryptographic-Algorithm.git
+cd Text-Encryption-Using-Cryptographic-Algorithm
 ```
 
 ### 2. Create a Virtual Environment
