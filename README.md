@@ -2,6 +2,8 @@
 
 This project provides a web-based application for **text encryption** and **decryption** using **AES (Advanced Encryption Standard)** with **CBC (Cipher Block Chaining)** mode. The application allows users to securely encrypt and decrypt text via a simple user interface.
 
+There is a new one which has more algorithms - 
+
 ## Features
 
 * **AES Encryption (CBC mode)**: Encrypts plain text into secure ciphertext.
